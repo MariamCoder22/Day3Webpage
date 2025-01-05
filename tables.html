@@ -24,3 +24,28 @@
       Your browser does not support the video tag.
     </video>
   </section>
+ <section>
+    <h2>Drag and Drop Example</h2>
+    <div style="border: 1px dashed #ccc; padding: 20px; width: 50%; margin: auto; text-align: center;">
+      <p id="dragItem" draggable="true" style="padding: 10px; background: #ddd; cursor: grab;">Drag me!</p>
+      <div id="dropZone" style="margin-top: 20px; border: 2px dashed #007bff; padding: 20px;">Drop Here</div>
+    </div>
+    <script>
+      const dragItem = document.getElementById('dragItem');
+      const dropZone = document.getElementById('dropZone');
+
+      dragItem.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', 'This is the dragged content!');
+      });
+
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const data = e.dataTransfer.getData('text/plain');
+        dropZone.innerHTML = `<p style="color: green;">${data}</p>`;
+      });
+    </script>
+  </section>
